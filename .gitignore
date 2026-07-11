@@ -1,0 +1,8 @@
+app/cars-backend/venv
+app/cars-backend/__pycache__
+app/order-service/venv
+app/order-service/__pycache__
+app/infra/k8s/db/secret.yaml
+key.json
+app/infra/k8s/cars/secret.yaml
+app/infra/k8s/order/secret.yaml

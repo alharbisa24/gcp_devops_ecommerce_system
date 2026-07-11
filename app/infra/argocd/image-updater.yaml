@@ -1,0 +1,48 @@
+apiVersion: argocd-image-updater.argoproj.io/v1alpha1
+kind: ImageUpdater
+metadata:
+  name: app-image-updater
+  namespace: argocd
+
+spec:
+  applicationRefs:
+    - namePattern: grafana-demo
+      useAnnotations: false
+
+      images:
+        - alias: backend
+          imageName: us-central1-docker.pkg.dev/project-3a15e654-5e42-4c1e-9db/devops-demo/backend
+          commonUpdateSettings:
+            forceUpdate: true
+            updateStrategy: newest-build
+            allowTags: regexp:^[a-f0-9]{40}$
+          manifestTargets:
+            kustomize:
+              name: us-central1-docker.pkg.dev/project-3a15e654-5e42-4c1e-9db/devops-demo/backend
+
+        - alias: order
+          imageName: us-central1-docker.pkg.dev/project-3a15e654-5e42-4c1e-9db/devops-demo/order
+          commonUpdateSettings:
+            forceUpdate: true
+            updateStrategy: newest-build
+            allowTags: regexp:^[a-f0-9]{40}$
+          manifestTargets:
+            kustomize:
+              name: us-central1-docker.pkg.dev/project-3a15e654-5e42-4c1e-9db/devops-demo/order
+
+        - alias: frontend
+          imageName: us-central1-docker.pkg.dev/project-3a15e654-5e42-4c1e-9db/devops-demo/frontend
+          commonUpdateSettings:
+            forceUpdate: true
+            updateStrategy: newest-build
+            allowTags: regexp:^[a-f0-9]{40}$
+          manifestTargets:
+            kustomize:
+              name: us-central1-docker.pkg.dev/project-3a15e654-5e42-4c1e-9db/devops-demo/frontend
+
+  writeBackConfig:
+    method: git:secret:argocd/github-git-creds
+    gitConfig:
+      repository: https://github.com/alharbisa24/gcp_devops_ecommerce_system.git
+      branch: main
+      writeBackTarget: kustomization

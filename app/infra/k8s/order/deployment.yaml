@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-api
+  namespace: order
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: order-api
+  template:
+    metadata:
+      labels:
+        app: order-api
+    spec:
+      containers:
+      - name: order-api
+        image: us-central1-docker.pkg.dev/project-3a15e654-5e42-4c1e-9db/devops-demo/order
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8001
+        env:
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: order-config
+              key: DB_HOST
+        - name: DB_USER
+          valueFrom:
+            configMapKeyRef:
+              name: order-config
+              key: DB_USER
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: order-secret
+              key: DB_PASSWORD
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: order-secret
+              key: SECRET_KEY
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: order-config
+              key: DB_NAME
+        - name: DB_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: order-config
+              key: DB_PORT
