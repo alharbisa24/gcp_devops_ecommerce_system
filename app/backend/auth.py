@@ -11,8 +11,8 @@ from models.users import User
 SECRET_KEY = os.getenv("SECRET_KEY")
 def create_access_token(user: User) -> str:
     payload = {"sub": user.id, "exp": int(time.time()) + 3600}
-    return f"{payload['sub']}:{payload['exp']}:{hashlib.sha256(f'{payload["sub"]}:{payload["exp"]}:{SECRET_KEY}'.encode()).hexdigest()}"
-
+    raw_string = f"{payload['sub']}:{payload['exp']}:{SECRET_KEY}"
+    return f"{payload['sub']}:{payload['exp']}:{hashlib.sha256(raw_string.encode()).hexdigest()}"
 
 def decode_access_token(token: str) -> Optional[int]:
     try:
