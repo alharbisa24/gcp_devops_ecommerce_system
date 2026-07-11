@@ -39,7 +39,7 @@ spec:
         - name: SECRET_KEY
           valueFrom:
             secretKeyRef:
-              name: order-secret
+              name: backend-secret
               key: SECRET_KEY
         - name: DB_NAME
           valueFrom:
