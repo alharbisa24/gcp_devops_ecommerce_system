@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components -- provider + hook pattern */
-import { createContext, useCallback, useContext, useMemo, useState } from 'react'
-import { cars } from '../data/cars'
+import { createContext, useCallback, useContext, useMemo, useState, useEffect } from 'react'
+import { fetchProducts } from '../api/items'
 
 const CartContext = createContext(null)
 
@@ -17,6 +17,25 @@ function loadInitial() {
 
 export function CartProvider({ children }) {
   const [items, setItems] = useState(loadInitial)
+  const [catalog, setCatalog] = useState([])
+
+  useEffect(() => {
+    let ignore = false
+
+    async function loadCatalog() {
+      try {
+        const products = await fetchProducts()
+        if (!ignore) setCatalog(products)
+      } catch {
+        if (!ignore) setCatalog([])
+      }
+    }
+
+    loadCatalog()
+    return () => {
+      ignore = true
+    }
+  }, [])
 
   const persist = useCallback((updater) => {
     setItems((prev) => {
@@ -66,12 +85,12 @@ export function CartProvider({ children }) {
   const lines = useMemo(() => {
     return items
       .map((line) => {
-        const car = cars.find((c) => c.id === line.carId)
+        const car = catalog.find((c) => c.id === line.carId)
         if (!car) return null
         return { ...line, car }
       })
       .filter(Boolean)
-  }, [items])
+  }, [catalog, items])
 
   const totalItems = useMemo(
     () => items.reduce((n, x) => n + x.quantity, 0),
