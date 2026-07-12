@@ -6,7 +6,7 @@ metadata:
 
 spec:
   applicationRefs:
-    - namePattern: grafana-demo
+    - namePattern: devops-demo
       useAnnotations: false
 
       images:

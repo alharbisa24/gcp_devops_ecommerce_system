@@ -65,6 +65,17 @@ def list_orders(db: Session, limit: int = 50, offset: int = 0):
     return db.query(Order).order_by(Order.created_at.desc()).offset(offset).limit(limit).all()
 
 
+def list_orders_by_user(db: Session, user_id: int, limit: int = 50, offset: int = 0):
+    return (
+        db.query(Order)
+        .filter(Order.user_id == user_id)
+        .order_by(Order.created_at.desc())
+        .offset(offset)
+        .limit(limit)
+        .all()
+    )
+
+
 def get_order(db: Session, order_id: int):
     return db.query(Order).filter(Order.id == order_id).first()
 

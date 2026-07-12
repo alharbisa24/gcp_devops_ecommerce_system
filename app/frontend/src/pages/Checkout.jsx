@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { createOrder } from '../api/orders'
+import { useAuth } from '../contexts/AuthContext'
 import { useCart } from '../contexts/CartContext'
 
 function formatPrice(n) {
@@ -13,6 +14,7 @@ function formatPrice(n) {
 
 export default function Checkout() {
   const navigate = useNavigate()
+  const { user, isAuthenticated } = useAuth()
   const { lines, subtotal, clearCart } = useCart()
   const [name, setName] = useState('')
   const [address, setAddress] = useState('')
@@ -52,9 +54,9 @@ export default function Checkout() {
 
     try {
       const order = await createOrder({
-        user_id: null,
-        user_email: 'guest@example.com',
-        user_name: name,
+        user_id: isAuthenticated ? user.id : null,
+        user_email: isAuthenticated ? user.email : 'guest@example.com',
+        user_name: isAuthenticated ? (user.full_name || user.username || name) : name,
         shipping_address: `${address}, ${city}`,
         items: lines.map((line) => ({
           item_id: line.car.id,

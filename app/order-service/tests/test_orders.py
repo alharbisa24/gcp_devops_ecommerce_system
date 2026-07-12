@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from db import Base
-from crud import create_order, get_order_by_number, list_orders
+from crud import create_order, get_order_by_number, list_orders, list_orders_by_user
 from schemas import OrderCreate, OrderItemCreate
 
 
@@ -40,6 +40,10 @@ class OrderServiceTests(unittest.TestCase):
         all_orders = list_orders(db)
         self.assertEqual(len(all_orders), 1)
         self.assertEqual(all_orders[0].id, order.id)
+
+        user_orders = list_orders_by_user(db, 1)
+        self.assertEqual(len(user_orders), 1)
+        self.assertEqual(user_orders[0].id, order.id)
 
         db.close()
 

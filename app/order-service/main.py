@@ -13,6 +13,7 @@ from crud import (
     get_order,
     get_order_by_number,
     list_orders,
+    list_orders_by_user,
     update_order,
     update_order_status,
 )
@@ -68,6 +69,20 @@ def get_orders(
     except SQLAlchemyError:
         logger.error("Order listing failed")
         raise HTTPException(status_code=503, detail="Unable to retrieve orders") from None
+
+
+@app.get("/orders/user/{user_id}", response_model=list[OrderResponse])
+def get_user_orders(
+    user_id: int,
+    limit: int = Query(default=50, ge=1, le=100),
+    offset: int = Query(default=0, ge=0),
+    db: Session = Depends(get_db),
+):
+    try:
+        return list_orders_by_user(db, user_id=user_id, limit=limit, offset=offset)
+    except SQLAlchemyError:
+        logger.error("User order listing failed")
+        raise HTTPException(status_code=503, detail="Unable to retrieve user orders") from None
 
 
 @app.get("/orders/by-number/{order_number}", response_model=OrderResponse)

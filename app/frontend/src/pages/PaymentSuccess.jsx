@@ -63,9 +63,9 @@ export default function PaymentSuccess() {
             {order.items.map((item) => (
               <li key={item.id} className="flex justify-between gap-3 px-4 py-3 text-sm">
                 <span className="text-slate-600">
-                  {item.product_name} × {item.quantity}
+                  {item.title} × {item.quantity}
                 </span>
-                <span className="font-medium text-slate-900">{formatPrice(item.line_total)}</span>
+                <span className="font-medium text-slate-900">{formatPrice(item.subtotal)}</span>
               </li>
             ))}
           </ul>

@@ -10,6 +10,7 @@ import Cart from './pages/Cart'
 import Checkout from './pages/Checkout'
 import PaymentSuccess from './pages/PaymentSuccess'
 import PaymentFailed from './pages/PaymentFailed'
+import MyOrders from './pages/MyOrders'
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
               <Route path="register" element={<Register />} />
               <Route path="cart" element={<Cart />} />
               <Route path="checkout" element={<Checkout />} />
+              <Route path="orders" element={<MyOrders />} />
               <Route path="payment/success" element={<PaymentSuccess />} />
               <Route path="payment/failed" element={<PaymentFailed />} />
               <Route path="*" element={<Navigate to="/" replace />} />

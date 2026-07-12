@@ -40,6 +40,9 @@ export default function Layout() {
             </NavLink>
             {isAuthenticated ? (
               <>
+                <NavLink to="/orders" className={navClass}>
+                  My Orders
+                </NavLink>
                 <span className="max-w-[140px] truncate px-2 text-sm text-slate-500">
                   {user.email}
                 </span>

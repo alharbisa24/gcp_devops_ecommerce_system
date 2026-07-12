@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: grafana-demo
+  name: devops-demo
   namespace: argocd
 spec:
   project: default
