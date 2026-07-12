@@ -85,6 +85,22 @@ It uses `gcr.io/cloud-builders/docker` for building and pushing, and `aquasec/tr
 - The order service is exposed internally on port `8000` in the cluster.
 - Kubernetes runtime configuration is managed via ConfigMaps and Secrets.
 
+## Screenshots
+
+The demo includes a polished storefront and management workflow for authenticated users, dynamic product catalog browsing, checkout, and order history.
+
+- **Storefront**: Browse Apple Store products with live catalog data.
+- **Authentication**: Register, log in, and receive a token-based session.
+- **Checkout**: Place an order and see the order confirmation screen.
+- **Order history**: View previous orders and order details as an authenticated user.
+
+![image1](https://raw.githubusercontent.com/alharbisa24/gcp_devops_ecommerce_system/main/images/image1.png)
+![image2](https://raw.githubusercontent.com/alharbisa24/gcp_devops_ecommerce_system/main/images/image2.png)
+![image3](https://raw.githubusercontent.com/alharbisa24/gcp_devops_ecommerce_system/main/images/image3.png)
+![image4](https://raw.githubusercontent.com/alharbisa24/gcp_devops_ecommerce_system/main/images/image4.png)
+![image5](https://raw.githubusercontent.com/alharbisa24/gcp_devops_ecommerce_system/main/images/image5.png)
+![image6](https://raw.githubusercontent.com/alharbisa24/gcp_devops_ecommerce_system/main/images/image6.png)
+
 
 ## Useful Commands
 
@@ -92,6 +108,4 @@ It uses `gcr.io/cloud-builders/docker` for building and pushing, and `aquasec/tr
 - Trigger Cloud Build: `gcloud builds submit --config cloudbuild.yaml .`
 - Check ArgoCD apps: `kubectl -n argocd get applications`
 
-## Project Status
 
-This repository is a Kubernetes DevSecOps demo built for GitOps deployment, secure container pipelines, and cluster-native service isolation.
