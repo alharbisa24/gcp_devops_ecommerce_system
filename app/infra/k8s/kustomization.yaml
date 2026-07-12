@@ -8,11 +8,11 @@ resources:
   - frontend/
 images:
   - name: us-central1-docker.pkg.dev/project-3a15e654-5e42-4c1e-9db/devops-demo/backend
-    newTag: latest
+    newTag: dc513d1369484c75da70d3d13c7578b864b454d5
     newName: us-central1-docker.pkg.dev/project-3a15e654-5e42-4c1e-9db/devops-demo/backend
   - name: us-central1-docker.pkg.dev/project-3a15e654-5e42-4c1e-9db/devops-demo/order
-    newTag: latest
+    newTag: 359eeb9a0becd9d53c145f96c0ae7a5a44409f7f
     newName: us-central1-docker.pkg.dev/project-3a15e654-5e42-4c1e-9db/devops-demo/order
   - name: us-central1-docker.pkg.dev/project-3a15e654-5e42-4c1e-9db/devops-demo/frontend
-    newTag: latest
+    newTag: dc513d1369484c75da70d3d13c7578b864b454d5
     newName: us-central1-docker.pkg.dev/project-3a15e654-5e42-4c1e-9db/devops-demo/frontend
