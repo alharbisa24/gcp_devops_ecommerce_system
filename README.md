@@ -11,6 +11,12 @@ This repository is a k8s Apple Store demo built for GitOps and secure deployment
 - `app/infra/argocd` - ArgoCD Application and Image Updater configuration
 - `cloudbuild.yaml` - Cloud Build pipeline for building, scanning, and pushing Docker images
 
+
+
+## Pipeline
+
+![image1](https://raw.githubusercontent.com/alharbisa24/gcp_devops_ecommerce_system/main/images/pipelineimage.png)
+
 ## DevSecOps Focus
 
 This project demonstrates a Kubernetes delivery pipeline with security and GitOps at the core:
