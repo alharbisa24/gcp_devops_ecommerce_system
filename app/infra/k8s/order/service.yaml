@@ -8,4 +8,4 @@ spec:
     app: order-api
   ports:
   - port: 8001
-    targetPort: 8001
+    targetPort: 8000
